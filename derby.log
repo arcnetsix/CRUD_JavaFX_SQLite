@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue Oct 17 15:40:45 UTC 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.16.1.1 - (1901046): instance a816c00e-018b-3e4b-e793-0000073811d8 
+on database directory C:\Gravity_Rodo_Automacao_1.0.11\db with class loader com.intellij.database.remote.jdbc.impl.JdbcClassLoader$JdbcClassLoaderImpl@1cd072a9 
+Loaded from file:/C:/Users/valds/AppData/Roaming/JetBrains/IntelliJIdea2023.2/jdbc-drivers/Apache%20Derby/10.16.1.1/org/apache/derby/derby/10.16.1.1/derby-10.16.1.1.jar
+java.vendor=JetBrains s.r.o.
+java.runtime.version=17.0.8+7-b1000.22
+user.dir=C:\Users\valds\IdeaProjects\cad_motorista
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
