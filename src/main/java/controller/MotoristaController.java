@@ -1,6 +1,7 @@
 package controller;
 
 import dao.MotoristaDAO;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -42,5 +43,14 @@ public class MotoristaController {
         textNome.setText(motorista.getNome());
         textCNH.setText(motorista.getCnh());
         textCPF.setText(motorista.getCpf());
+    }
+
+    public void pesquisarCadastro(ActionEvent actionEvent) {
+    }
+
+    public void editarCadastro(ActionEvent actionEvent) {
+    }
+
+    public void excluirCadastro(ActionEvent actionEvent) {
     }
 }

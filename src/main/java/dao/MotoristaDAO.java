@@ -12,7 +12,7 @@ public class MotoristaDAO {
     private Connection connection;
 
     public MotoristaDAO() throws SQLException {
-        // Inicialize a conexão aqui usando um ConnectionFactory.
+
         this.connection = ConnectionFactory.connect();
     }
 

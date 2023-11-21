@@ -1,14 +1,22 @@
 package model;
 
 public class Cidade {
-    private int id;
-    private String nome;
+
     private String uf;
+
+
+    public Cidade(int id, String nome, String uf) {
+        this.id = id;
+        this.nome = nome;
+        this.uf = uf;
+    }
 
     public int getId() {
         return id;
     }
 
+    private int id;
+    private String nome;
     public void setId(int id) {
         this.id = id;
     }
@@ -27,5 +35,15 @@ public class Cidade {
 
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Cidade{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", uf='" + uf + '\'' +
+                '}';
     }
 }
