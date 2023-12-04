@@ -1,5 +1,9 @@
 package controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,11 +11,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import dao.UsuarioDAO;
+
 
 
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginController {
 
@@ -37,13 +44,18 @@ public class LoginController {
                 System.out.println("Login bem-sucedido!");
                 abrirNovaJanela("/app/cadMotorista.fxml", "Cadastro de Motorista!");
             } else {
-                System.out.println("Login falhou. Verifique o usuário e a senha.");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Falha no Login");
+                alert.setHeaderText(null);
+                alert.setContentText("Usuário ou senha incorretos. Tente novamente.");
+
+
+                alert.showAndWait();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void cancel() {
@@ -63,21 +75,13 @@ public class LoginController {
         loginStage.close();
     }
 
-    @FXML
-    public void salvarCadastro(ActionEvent actionEvent) {
-    }
+
+
+
 
     @FXML
     public void pesquisarCadastro(ActionEvent actionEvent) {
 
     }
 
-    @FXML
-    public void editarCadastro(ActionEvent actionEvent) {
-
-    }
-
-    @FXML
-    public void excluirCadastro(ActionEvent actionEvent) {
-    }
 }

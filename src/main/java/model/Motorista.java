@@ -1,9 +1,12 @@
 package model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import java.util.Date;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class Motorista {
-    private int id;
     private int idCidade;
     private int idVeiculo;
     private String nome;
@@ -11,12 +14,18 @@ public class Motorista {
     private String cnh;
     private Date dataCadastro;
 
+    private final IntegerProperty id = new SimpleIntegerProperty();
+
     public int getId() {
-        return id;
+        return id.get();
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id.set(id);
+    }
+
+    public IntegerProperty idProperty() {
+        return id;
     }
 
     public int getIdCidade() {
@@ -64,6 +73,7 @@ public class Motorista {
     }
 
     public void setDataCadastro(Date dataCadastro) {
+
         this.dataCadastro = dataCadastro;
     }
 }

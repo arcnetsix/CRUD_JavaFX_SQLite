@@ -3,6 +3,7 @@ package model;
 import java.util.Objects;
 
 public class Usuario {
+
     private String nome;
     private String senha;
 

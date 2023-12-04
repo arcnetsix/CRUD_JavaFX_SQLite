@@ -2,12 +2,17 @@ package dao;
 
 import database.ConnectionFactory;
 import model.Motorista;
-
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class MotoristaDAO {
+
+
+
+public class MotoristaDAO implements AutoCloseable{
 
     private Connection connection;
 
@@ -20,6 +25,7 @@ public class MotoristaDAO {
         String sql = "INSERT INTO motorista (id_cidade, id_veiculo, nome, cpf, cnh, dataCadastro) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
+
             stmt.setInt(1, motorista.getIdCidade());
             stmt.setInt(2, motorista.getIdVeiculo());
             stmt.setString(3, motorista.getNome());
@@ -50,7 +56,8 @@ public class MotoristaDAO {
                 motorista.setNome(rs.getString("nome"));
                 motorista.setCpf(rs.getString("cpf"));
                 motorista.setCnh(rs.getString("cnh"));
-                motorista.setDataCadastro(rs.getDate("dataCadastro"));
+
+                motorista.setDataCadastro(new java.util.Date(rs.getDate("dataCadastro").getTime()));
             }
             rs.close();
             stmt.close();
@@ -60,10 +67,12 @@ public class MotoristaDAO {
         }
     }
 
+
     public void atualizar(Motorista motorista) {
         String sql = "UPDATE motorista SET id_cidade = ?, id_veiculo = ?, nome = ?, cpf = ?, cnh = ?, dataCadastro = ? WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
+
             stmt.setInt(1, motorista.getIdCidade());
             stmt.setInt(2, motorista.getIdVeiculo());
             stmt.setString(3, motorista.getNome());
@@ -87,8 +96,15 @@ public class MotoristaDAO {
 
             stmt.executeUpdate();
             stmt.close();
+            connection.commit();
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
+        }
+    }
+    public void close() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
         }
     }
 
@@ -108,14 +124,25 @@ public class MotoristaDAO {
                 motorista.setCpf(rs.getString("cpf"));
                 motorista.setCnh(rs.getString("cnh"));
 
+                String dataCadastroString = rs.getString("dataCadastro");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+                java.util.Date dataCadastroUtil = dateFormat.parse(dataCadastroString);
 
-                motorista.setDataCadastro(rs.getDate("dataCadastro"));
+                String dataCadastroStr = rs.getString("dataCadastro");
+
+                // Convertendo a string para um objeto Date
+                dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+                Date dataCadastro = dateFormat.parse(dataCadastroStr);
+
+                motorista.setDataCadastro(dataCadastro);
+
                 motoristas.add(motorista);
             }
             rs.close();
             stmt.close();
             return motoristas;
         } catch (Exception e) {
+
             throw new RuntimeException(e);
         }
     }
