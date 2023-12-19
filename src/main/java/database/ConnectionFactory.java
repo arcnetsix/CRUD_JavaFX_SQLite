@@ -5,7 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-    public static Connection connect() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite:cadastro.db");
+    public static Connection connect() {
+        try {
+            return DriverManager.getConnection("jdbc:sqlite:cadastro.db");
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao conectar ao banco de dados", e);
+        }
     }
 }

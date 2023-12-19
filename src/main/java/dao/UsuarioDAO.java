@@ -7,21 +7,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsuarioDAO{
+public class UsuarioDAO {
 
     private Connection connection;
 
     public UsuarioDAO() {
-        try {
-            this.connection = ConnectionFactory.connect();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        this.connection = ConnectionFactory.connect();
     }
 
-    // Método para autenticar usuário
     public boolean autenticarUsuario(String login, String senha) {
-        String sql = "SELECT * FROM usuarios WHERE login = ? AND senha = ?";
+        String sql = "SELECT * FROM usuario WHERE login = ? AND senha = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, login);
             statement.setString(2, senha);
@@ -41,7 +36,7 @@ public class UsuarioDAO{
 
     // Método para registrar um login no relatório
     private void registrarLogin(String login) {
-        String sql = "INSERT INTO relatorio_logins (login, data_login) VALUES (?, NOW())";
+        String sql = "INSERT INTO relatorio_logins (login, data_login) VALUES (?, CURRENT_TIMESTAMP)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, login);
             statement.executeUpdate();
@@ -50,3 +45,7 @@ public class UsuarioDAO{
         }
     }
 }
+    
+
+
+

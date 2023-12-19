@@ -3,8 +3,6 @@ package model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import java.util.Date;
-import javafx.scene.control.cell.PropertyValueFactory;
-
 
 public class Motorista {
     private int idCidade;
@@ -22,10 +20,6 @@ public class Motorista {
 
     public void setId(int id) {
         this.id.set(id);
-    }
-
-    public IntegerProperty idProperty() {
-        return id;
     }
 
     public int getIdCidade() {

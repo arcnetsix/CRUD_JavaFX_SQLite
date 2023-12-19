@@ -35,34 +35,16 @@
          <font>
             <Font size="18.0" />
          </font>
+         <visible>true</visible>
       </Button>
       <Button fx:id="btnEditar" layoutX="17.0" layoutY="343.0" mnemonicParsing="false" onAction="#editarCadastro" prefHeight="39.0" prefWidth="122.0" text="Editar">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-
       <Button fx:id="btnCancelarEdicao" layoutX="317.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancelarEdicao" prefHeight="39.0" prefWidth="122.0" text="Cancelar" visible="false" />
       <Button fx:id="btnSalvarEdicao" layoutX="185.0" layoutY="343.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="39.0" prefWidth="122.0" text="Salvar" visible="false" />
       <TableView fx:id="tabelaMotoristas" layoutX="14.0" layoutY="166.0" prefHeight="160.0" prefWidth="571.0">
-         <columns>
-            <TableColumn text="ID">
-               <!-- Remova esta seção do FXML, pois será configurada no código Java -->
-            </TableColumn>
-            <TableColumn text="Nome">
-               <!-- Remova esta seção do FXML, pois será configurada no código Java -->
-            </TableColumn>
-            <TableColumn text="CPF">
-               <!-- Remova esta seção do FXML, pois será configurada no código Java -->
-            </TableColumn>
-            <TableColumn text="CNH">
-               <!-- Remova esta seção do FXML, pois será configurada no código Java -->
-            </TableColumn>
-            <!-- Adicione mais colunas conforme necessário -->
-         </columns>
       </TableView>
-
-
-
    </children>
 </AnchorPane>

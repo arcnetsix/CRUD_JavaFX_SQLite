@@ -40,7 +40,9 @@ public class LoginController {
             String login = textLogin.getText();
             String senha = textPassword.getText();
 
-            if ("usuario".equals(login) && "123".equals(senha)) {
+            // Utilizando UsuarioDAO para autenticação
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            if (usuarioDAO.autenticarUsuario(login, senha)) {
                 System.out.println("Login bem-sucedido!");
                 abrirNovaJanela("/app/cadMotorista.fxml", "Cadastro de Motorista!");
             } else {
@@ -48,14 +50,13 @@ public class LoginController {
                 alert.setTitle("Falha no Login");
                 alert.setHeaderText(null);
                 alert.setContentText("Usuário ou senha incorretos. Tente novamente.");
-
-
                 alert.showAndWait();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void cancel() {

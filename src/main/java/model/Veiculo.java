@@ -3,7 +3,14 @@ package model;
 public class Veiculo {
     private String placa;
     private String renavan;
+    private String modelo;
 
+    public String getModelo() {
+        return modelo;
+    }
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
     public String getPlaca() {
         return placa;

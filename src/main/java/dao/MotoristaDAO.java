@@ -2,6 +2,8 @@ package dao;
 
 import database.ConnectionFactory;
 import model.Motorista;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.sql.*;
@@ -39,38 +41,78 @@ public class MotoristaDAO implements AutoCloseable{
             throw new RuntimeException(e);
         }
     }
+    public void excluir(int id) throws SQLException {
+        String sql = "DELETE FROM motorista WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            int rowsAffected = statement.executeUpdate();
 
-    public Motorista pesquisar(int id) {
-        String sql = "SELECT * FROM motorista WHERE id = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
-
-            ResultSet rs = stmt.executeQuery();
-            Motorista motorista = null;
-            if (rs.next()) {
-                motorista = new Motorista();
-                motorista.setId(rs.getInt("id"));
-                motorista.setIdCidade(rs.getInt("id_cidade"));
-                motorista.setIdVeiculo(rs.getInt("id_veiculo"));
-                motorista.setNome(rs.getString("nome"));
-                motorista.setCpf(rs.getString("cpf"));
-                motorista.setCnh(rs.getString("cnh"));
-
-                motorista.setDataCadastro(new java.util.Date(rs.getDate("dataCadastro").getTime()));
+            if (rowsAffected == 0) {
+                throw new SQLException("Nenhum registro encontrado para exclusão.");
             }
-            rs.close();
-            stmt.close();
-            return motorista;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
+        }
+    }
+
+
+    public Motorista pesquisar(int id) throws SQLException {
+        String query = "SELECT * FROM motorista WHERE id = ?";
+        Motorista motorista = null;
+
+        try (Connection connection = DriverManager.getConnection("jdbc:sqlite:cadastro.db");
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    motorista = new Motorista();
+                    motorista.setId(resultSet.getInt("id"));
+                    motorista.setNome(resultSet.getString("nome"));
+                    motorista.setCpf(resultSet.getString("cpf"));
+                    motorista.setCnh(resultSet.getString("cnh"));
+
+                    // Tratar a conversão da string para Date
+                    String dataCadastroStr = resultSet.getString("data_cadastro");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
+                    try {
+                        Date dataCadastro = dateFormat.parse(dataCadastroStr);
+                        motorista.setDataCadastro(dataCadastro);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        return motorista;
+    }
+
+    public void iniciarTransacao() throws SQLException {
+        if (connection != null) {
+            connection.setAutoCommit(false);
+        }
+    }
+
+    public void finalizarTransacao() throws SQLException {
+        if (connection != null) {
+            connection.setAutoCommit(true);
+        }
+    }
+
+    public void close() throws SQLException {
+        if (connection != null && !connection.isClosed()) {
+            connection.close();
         }
     }
 
 
     public void atualizar(Motorista motorista) {
         String sql = "UPDATE motorista SET id_cidade = ?, id_veiculo = ?, nome = ?, cpf = ?, cnh = ?, dataCadastro = ? WHERE id = ?";
-        try {
+        try {Connection connection = DriverManager.getConnection("jdbc:sqlite:cadastro.db");
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             stmt.setInt(1, motorista.getIdCidade());
@@ -85,26 +127,6 @@ public class MotoristaDAO implements AutoCloseable{
             stmt.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void excluir(int id) {
-        String sql = "DELETE FROM motorista WHERE id = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, id);
-
-            stmt.executeUpdate();
-            stmt.close();
-            connection.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-    public void close() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
         }
     }
 
