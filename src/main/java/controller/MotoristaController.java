@@ -195,7 +195,8 @@ public class MotoristaController {
                     // Exiba a mensagem de exclusão bem-sucedida
                     exibirMensagemErro("Exclusão bem-sucedida", "O registro foi excluído com sucesso.");
 
-                    carregarDadosDoBanco();
+                    // Remova o motorista excluído da TableView
+                    tabelaMotoristas.getItems().remove(motoristaSelecionado);
                 }
             } else {
                 exibirMensagemErro("Erro na exclusão", "Nenhum motorista selecionado para exclusão.");
@@ -204,6 +205,7 @@ public class MotoristaController {
             handleSQLException(e, "Erro na exclusão", "Ocorreu um erro ao excluir o registro");
         }
     }
+
 
 
     private void exibirMensagemErro(String titulo, String conteudo) {
@@ -242,8 +244,13 @@ public class MotoristaController {
         textNome.clear();
         textCNH.clear();
         textCPF.clear();
-        textPesquisar.clear();
+
+        // Verifica se textPesquisar não é nulo antes de chamá-lo
+        if (textPesquisar != null) {
+            textPesquisar.clear();
+        }
     }
+
 
     private void handleSQLException(Exception e, String title, String content) {
         e.printStackTrace();

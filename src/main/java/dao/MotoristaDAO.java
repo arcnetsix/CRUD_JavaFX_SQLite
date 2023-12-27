@@ -42,21 +42,32 @@ public class MotoristaDAO implements AutoCloseable{
         }
     }
     public void excluir(int id) throws SQLException {
-        String sql = "DELETE FROM motorista WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            int rowsAffected = statement.executeUpdate();
+        try {
+            // Desativar o modo de auto-commit
+            connection.setAutoCommit(false);
 
-            if (rowsAffected == 0) {
-                throw new SQLException("Nenhum registro encontrado para exclusão.");
+            String sql = "DELETE FROM motorista WHERE id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                int rowsAffected = statement.executeUpdate();
+
+                if (rowsAffected == 0) {
+                    throw new SQLException("Nenhum registro encontrado para exclusão.");
+                }
+
+                connection.commit();
+                System.out.println("Exclusão bem-sucedida para o ID: " + id);
+            } catch (SQLException e) {
+                connection.rollback();
+                System.err.println("Erro ao excluir registro: " + e.getMessage());
+                throw e;
             }
-
-            connection.commit();
-        } catch (SQLException e) {
-            connection.rollback();
-            throw e;
+        } finally {
+            // Habilitar o modo de auto-commit novamente no bloco finally
+            connection.setAutoCommit(true);
         }
     }
+
 
 
     public Motorista pesquisar(int id) throws SQLException {
