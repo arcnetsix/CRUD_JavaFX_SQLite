@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     public static Connection connect() {
         try {
-            return DriverManager.getConnection("jdbc:sqlite:cadastro.db");
+            return DriverManager.getConnection("jdbc:sqlite:C:/Users/eigve/Downloads/cadastro.db");
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao conectar ao banco de dados", e);
         }
