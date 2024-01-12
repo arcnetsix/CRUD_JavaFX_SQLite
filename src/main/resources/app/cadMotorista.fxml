@@ -4,47 +4,47 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MotoristaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MotoristaController">
    <children>
-      <TextField fx:id="textNome" layoutX="14.0" layoutY="31.0" prefHeight="26.0" prefWidth="571.0" />
+      <TextField fx:id="textNome" layoutX="14.0" layoutY="31.0" prefHeight="26.0" prefWidth="375.0" />
       <Label layoutX="14.0" layoutY="14.0" text="Nome:" />
-      <Button fx:id="btnSalvar" layoutX="461.0" layoutY="343.0" mnemonicParsing="false" onAction="#salvarCadastro" prefHeight="39.0" prefWidth="122.0" text="Salvar">
+      <Button fx:id="btnSalvar" layoutX="566.0" layoutY="437.0" mnemonicParsing="false" onAction="#salvarCadastro" prefHeight="39.0" prefWidth="122.0" text="Salvar">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="textCPF" layoutX="15.0" layoutY="74.0" prefHeight="26.0" prefWidth="178.0" />
-      <Label layoutX="15.0" layoutY="57.0" text="CPF:" />
-      <TextField fx:id="textCNH" layoutX="200.0" layoutY="74.0" prefHeight="26.0" prefWidth="189.0" />
-      <Label layoutX="200.0" layoutY="57.0" text="CNH:" />
-      <TextField fx:id="textData" layoutX="396.0" layoutY="74.0" prefHeight="26.0" prefWidth="189.0" />
+      <TextField fx:id="textCPF" layoutX="396.0" layoutY="31.0" prefHeight="26.0" prefWidth="290.0" />
+      <Label layoutX="399.0" layoutY="14.0" text="CPF:" />
+      <TextField fx:id="textCNH" layoutX="14.0" layoutY="74.0" prefHeight="17.0" prefWidth="189.0" />
+      <Label layoutX="13.0" layoutY="58.0" text="CNH:" />
+      <TextField fx:id="textData" layoutX="399.0" layoutY="74.0" prefHeight="26.0" prefWidth="283.0" />
       <Label layoutX="397.0" layoutY="57.0" text="Data Cadastro:" />
-      <Button fx:id="btnAtualizar" layoutX="155.0" layoutY="344.0" mnemonicParsing="false" onAction="#atualizarCadastro" prefHeight="39.0" prefWidth="122.0" text="Atualizar">
+      <Button fx:id="btnAtualizar" layoutX="185.0" layoutY="437.0" mnemonicParsing="false" onAction="#atualizarCadastro" prefHeight="39.0" prefWidth="122.0" text="Atualizar">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="textVeiculo" layoutX="14.0" layoutY="118.0" prefHeight="32.0" prefWidth="178.0" />
-      <Label layoutX="13.0" layoutY="67.0" prefHeight="81.0" prefWidth="63.0" text=" Veículo:" />
-      <TextField fx:id="textPlaca" layoutX="199.0" layoutY="119.0" prefHeight="32.0" prefWidth="189.0" />
-      <Label layoutX="203.0" layoutY="67.0" prefHeight="81.0" prefWidth="53.0" text="Placa:" />
-      <TextField fx:id="textRenavan" layoutX="399.0" layoutY="120.0" prefHeight="32.0" prefWidth="189.0" />
-      <Label layoutX="397.0" layoutY="67.0" prefHeight="81.0" prefWidth="88.0" text="Renavan:" />
+      <TextField fx:id="textModelo" layoutX="14.0" layoutY="118.0" prefHeight="32.0" prefWidth="178.0" />
+      <Label layoutX="13.0" layoutY="67.0" prefHeight="81.0" prefWidth="63.0" text=" Modelo:" />
+      <TextField fx:id="textPlaca" layoutX="211.0" layoutY="74.0" prefHeight="26.0" prefWidth="178.0" />
+      <Label layoutX="211.0" layoutY="54.0" prefHeight="26.0" prefWidth="53.0" text="Placa:" />
+      <TextField fx:id="textRenavan" layoutX="212.0" layoutY="118.0" prefHeight="32.0" prefWidth="189.0" />
+      <Label layoutX="211.0" layoutY="67.0" prefHeight="81.0" prefWidth="88.0" text="Renavan:" />
 
-      <Button fx:id="btnExcluir" layoutX="307.0" layoutY="343.0" mnemonicParsing="false" onAction="#excluirCadastro" prefHeight="39.0" prefWidth="137.0" text="Excluir">
+      <Button fx:id="btnExcluir" layoutX="378.0" layoutY="437.0" mnemonicParsing="false" onAction="#excluirCadastro" prefHeight="39.0" prefWidth="137.0" text="Excluir">
          <font>
             <Font size="18.0" />
          </font>
          <visible>true</visible>
       </Button>
-      <Button fx:id="btnEditar" layoutX="17.0" layoutY="343.0" mnemonicParsing="false" onAction="#editarCadastro" prefHeight="39.0" prefWidth="122.0" text="Editar">
+      <Button fx:id="btnEditar" layoutX="15.0" layoutY="437.0" mnemonicParsing="false" onAction="#editarCadastro" prefHeight="39.0" prefWidth="122.0" text="Editar">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <Button fx:id="btnCancelarEdicao" layoutX="317.0" layoutY="343.0" mnemonicParsing="false" onAction="#cancelarEdicao" prefHeight="39.0" prefWidth="122.0" text="Cancelar" visible="false" />
       <Button fx:id="btnSalvarEdicao" layoutX="185.0" layoutY="343.0" mnemonicParsing="false" onAction="#salvarEdicao" prefHeight="39.0" prefWidth="122.0" text="Salvar" visible="false" />
-      <TableView fx:id="tabelaMotoristas" layoutX="14.0" layoutY="166.0" prefHeight="160.0" prefWidth="571.0">
+      <TableView fx:id="tabelaMotoristas" layoutX="14.0" layoutY="166.0" prefHeight="253.0" prefWidth="674.0">
       </TableView>
    </children>
 </AnchorPane>

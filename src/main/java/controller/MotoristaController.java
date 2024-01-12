@@ -42,10 +42,10 @@ public class MotoristaController {
         TableColumn<Motorista, String> colunaCnh = new TableColumn<>("CNH");
         colunaCnh.setCellValueFactory(new PropertyValueFactory<>("cnh"));
 
-        TableColumn<Motorista, Date> colunaDataCadastro = new TableColumn<>("Data de Cadastro");
-        colunaDataCadastro.setCellValueFactory(new PropertyValueFactory<>("dataCadastro"));
+        TableColumn<Motorista, String> colunaVeiculo = new TableColumn<>("Veículo");
+        colunaVeiculo.setCellValueFactory(new PropertyValueFactory<>("veiculo"));
 
-        tabelaMotoristas.getColumns().addAll(colunaId, colunaNome, colunaCpf, colunaCnh, colunaDataCadastro);
+        tabelaMotoristas.getColumns().addAll(colunaId, colunaNome, colunaCpf, colunaCnh, colunaVeiculo);
     }
 
     private void carregarDadosDoBanco() {

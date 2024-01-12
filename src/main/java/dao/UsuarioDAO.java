@@ -15,6 +15,8 @@ public class UsuarioDAO {
         this.connection = ConnectionFactory.connect();
     }
 
+
+
     public boolean autenticarUsuario(String login, String senha) {
         String sql = "SELECT * FROM usuario WHERE login = ? AND senha = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -33,8 +35,6 @@ public class UsuarioDAO {
             return false;
         }
     }
-
-    // Método para registrar um login no relatório
     private void registrarLogin(String login) {
         String sql = "INSERT INTO relatorio_logins (login, data_login) VALUES (?, CURRENT_TIMESTAMP)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -44,6 +44,7 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
+
 }
     
 

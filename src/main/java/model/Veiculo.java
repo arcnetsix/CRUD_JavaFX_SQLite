@@ -5,13 +5,6 @@ public class Veiculo {
     private String renavan;
     private String modelo;
 
-    public String getModelo() {
-        return modelo;
-    }
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
     public String getPlaca() {
         return placa;
     }
@@ -26,5 +19,13 @@ public class Veiculo {
 
     public void setRenavan(String renavan) {
         this.renavan = renavan;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 }

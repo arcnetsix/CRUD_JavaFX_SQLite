@@ -70,4 +70,7 @@ public class Motorista {
 
         this.dataCadastro = dataCadastro;
     }
+
+    public void setPlaca(String text) {
+    }
 }

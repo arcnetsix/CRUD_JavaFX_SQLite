@@ -58,6 +58,7 @@ public class LoginController {
     }
 
 
+
     @FXML
     private void cancel() {
         System.out.println("Operação de cancelamento.");
